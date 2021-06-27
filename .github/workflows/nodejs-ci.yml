@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Upload code coverage
-        uses: paambaati/codeclimate-action@v2
+        uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
         if: startsWith('16', ${{ matrix.node-version }})
