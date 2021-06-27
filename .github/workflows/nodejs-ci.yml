@@ -21,6 +21,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+      - name: Install npm packages
+        run: npm ci
+      - name: Run build
+        run: npm run build --if-present
+      - name: Run tests
+        run: npm test
+      - name: Upload code coverage
+        uses: paambaati/codeclimate-action@v2
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
+        if: startsWith('16', ${{ matrix.node-version }})
